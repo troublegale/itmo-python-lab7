@@ -56,7 +56,7 @@ async def test_delete_then_get(client, task):
 async def test_process_time_header(client):
     r = await client.get("/tasks")
     assert r.status_code == 200
-    assert float(r.headers["X-Process-Time"]) < 0
+    assert float(r.headers["X-Process-Time"]) >= 0
 
 
 async def test_patch_null_rejected(client, task):
