@@ -95,6 +95,10 @@ Workflow `.github/workflows/ci.yml` запускается на каждый pus
 
 ![Падающий pipeline PR №1](docs/ci-failure.png)
 
+После исправления все 12 тестов прошли в Python-окружении и через Docker Compose. PR №1 слит в main. [Успешный pipeline после merge](https://github.com/troublegale/itmo-python-lab7/actions/runs/42090145651) завершил все три jobs: lint, test и build, включая публикацию в оба реестра.
+
+![Успешный pipeline с публикацией образов](docs/ci-success.png)
+
 ## Образы
 
 - [GHCR](https://github.com/troublegale/itmo-python-lab7/pkgs/container/itmo-python-lab7): `ghcr.io/troublegale/itmo-python-lab7:latest`
@@ -106,6 +110,8 @@ docker pull troublegale/itmo-python-lab7:latest
 ```
 
 Образу для запуска требуется переменная `DATABASE_URL` и применённые миграции; готовая конфигурация есть в Compose.
+
+Публикация проверена: оба реестра возвращают `latest` без авторизации. Образы опубликованы из коммита `f88fbaf231167a49e884b8cb00ba83350f8cd34f`; для воспроизводимой загрузки используйте этот SHA вместо `latest`. Локально проверен Ruff; интеграционные и контейнерные проверки выполнены на GitHub-hosted runner, поскольку Docker Engine на рабочем компьютере не запущен.
 
 ## Ответы на контрольные вопросы
 
